@@ -12,6 +12,18 @@
         </div>
         
         <!-- sezione post -->
+        {% for post in posts %}
+            <div>
+                <p>Pubblicato il: {{ post.published_date }} </p>
+
+                <h1><a href="">{{ post.title }}</a></h1>
+
+                <p>{{ post.text}}</p>
+
+                <hr />
+            </div>
+        {% endfor %}
+
         <div>
             <p>pubblicato il %date alle %time</p>
 
