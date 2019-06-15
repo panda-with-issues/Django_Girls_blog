@@ -1,49 +1,19 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-        <title>Il blog di Yuuki</title>
-    </head>
+{% extends 'blog/base.html' %}
 
-    <body>
+{% block content %}
 
-        <!-- titolo -->
-        <div class='page-header'>
-            <h1> Il blog di Yuuki con Django Girls</h1>
-        </div>
-        
-        <!-- sezione post -->
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
+    {% for post in posts %}
 
-                    {% for post in posts %}
+        <div class="post">
 
-                        <div class="post">
-
-                            <div class="date">
-                                <p>published: {{ post.published_date }}</p>
-                            </div>
-
-                            <h1><a href="">{{ post.title }}</a></h1>
-                            <p>{{ post.text|linebreaksbr }}</p>
-                        </div>
-
-                    {% endfor %}
-                </div>
+            <div class="date">
+                <p>published: {{ post.published_date }}</p>
             </div>
+
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
         </div>
 
-        <div>
-            <p>pubblicato il %date alle %time</p>
+    {% endfor %}
 
-            <h2><a href="">Nuovo post!</a></h2>
-
-            <p>Lorem ipsum dolor sit atque</p>
-        </div>
-    </body>
-</html>
+{% endblock %}
